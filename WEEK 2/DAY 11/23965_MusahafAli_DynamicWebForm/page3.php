@@ -17,8 +17,7 @@
 
 <?php
 
-// number of users (must be passed from page2 hidden input)
-$num = $GET['fields_input'];
+$num = $_POST["user"];
 
 for($i = 1; $i <= $num; $i++) {
     $name = $_POST["name$i"];

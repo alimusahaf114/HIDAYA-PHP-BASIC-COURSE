@@ -6,11 +6,11 @@
 <body>
 <center>
 
-<form method="GET" action="page3.php">
+<form method="POST" action="page3.php">
 <table border="1">
 
 <?php
-$num = $_GET['fields_input'];
+$num = $_POST['fields_input'];
 
 for($i = 1; $i <= $num; $i++) {
 ?>
@@ -42,7 +42,7 @@ for($i = 1; $i <= $num; $i++) {
 
 <?php } ?>
 <tr>
-    <input type="hidder" name="users" value="<?php echo $num ?>>">
+    <input type="hidden" name="user" value="<?php echo $num; ?>">
 </tr>
 <tr>
     <td colspan="2"><input type="submit"></td>

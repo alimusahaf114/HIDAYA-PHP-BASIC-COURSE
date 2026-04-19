@@ -4,7 +4,7 @@
     <title>Document</title>
 </head>
 <body><center>
-    <form action="userInputProcess.php , " method="GET">
+    <form action="userInputProcess.php" method="POST">
         <table>
             <tr>
                 <th>No Of Fields:</th>
