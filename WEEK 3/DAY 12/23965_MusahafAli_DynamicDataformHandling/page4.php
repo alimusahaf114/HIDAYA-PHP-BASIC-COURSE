@@ -25,7 +25,6 @@ for($i = 1; $i <= $num; $i++){
     $country = $_POST['country'.$i];
 
     if(isset($_POST['check'.$i])){
-        // ✅ SELECTED → Editable
 ?>
 
     <tr>
@@ -49,7 +48,6 @@ for($i = 1; $i <= $num; $i++){
 
 <?php
     } else {
-        // ✅ NOT SELECTED → Keep as hidden (VERY IMPORTANT)
 ?>
 
     <input type="hidden" name="first_name<?php echo $i ?>" value="<?php echo $name ?>">

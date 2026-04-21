@@ -40,7 +40,7 @@
             </tr>
         </table>
         
-                    <input type="hidden" name="fields" value="<?php echo $num ?>">
+        <input type="hidden" name="fields" value="<?php echo $num ?>">
               
     </form>
     </center>

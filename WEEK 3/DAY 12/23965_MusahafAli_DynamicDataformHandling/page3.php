@@ -24,14 +24,13 @@
     </tr>
 
 <?php
-$num = isset($_POST['fields']) ? intval($_POST['fields']) : 0;
+$num = isset($_POST['fields']);
 
 for($i = 1; $i <= $num; $i++){
 
-    // Safe values (avoid undefined error)
-    $name = isset($_POST['first_name'.$i]) ? $_POST['first_name'.$i] : '';
-    $gender = isset($_POST['gender'.$i]) ? $_POST['gender'.$i] : 'Not Selected';
-    $country = isset($_POST['country'.$i]) ? $_POST['country'.$i] : 'Not Selected';
+    $name = isset($_POST['first_name'.$i]) ;
+    $gender = isset($_POST['gender'.$i]) ;
+    $country = isset($_POST['country'.$i]) ;
 ?>
 
     <tr>
@@ -65,7 +64,6 @@ for($i = 1; $i <= $num; $i++){
 
 </table>
 
-<!-- IMPORTANT: send total fields -->
 <input type="hidden" name="fields" value="<?php echo $num; ?>">
 
 </form>
