@@ -7,7 +7,7 @@
 </head>
 <body>
     <center>
-    <form action="page4.php" method="POST">
+    <form action="page444.php" method="POST">
         <table border="1" cellspacing=2 cellpadding=10>
             <tr>
                 <th>Name</th>
@@ -35,7 +35,7 @@
                     <?php echo $country ; ?>
                    <input type="hidden" name="country<?php echo $i ?>" value=<?php echo $country ?>>
                 </td>
-                <td><input type="checkbox" name="check<?php echo $i?>" value="1"></td>            
+                <td><input type="checkbox" name="check<?php echo $i?>" value="5"></td>            
             </tr>
             <?php } ?>
             <tr align=center>

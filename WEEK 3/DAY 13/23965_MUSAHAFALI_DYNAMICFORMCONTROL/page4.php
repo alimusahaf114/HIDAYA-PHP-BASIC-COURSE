@@ -40,8 +40,8 @@
             </tr>
             <?php }else { ?>
             <input type="hidden" name="first_name<?php echo $i ?>" value="<?php echo $name ?>">
-    <input type="hidden" name="gender<?php echo $i ?>" value="<?php echo $gender ?>">
-    <input type="hidden" name="country<?php echo $i ?>" value="<?php echo $country ?>">
+            <input type="hidden" name="gender<?php echo $i ?>" value="<?php echo $gender ?>">
+            <input type="hidden" name="country<?php echo $i ?>" value="<?php echo $country ?>">
             
             <?php }}?>
             <tr align=center>
