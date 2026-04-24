@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>..:: TechBlog — CSS Day 3 Layout ::..</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+	<style>
+
+		/* ===========================
+		   CSS RESET & BASE
+		=========================== */
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			background-color: #f5f0e8;
+			font-family: 'Source Serif 4', serif;
+			color: #1a1208;
+		}
+
+		/* ===========================
+		   STICKY HEADER
+		   position: sticky  (Day 3)
+		=========================== */
+		.site-header {
+			background-color: #1a1208;
+			color: #f5f0e8;
+			border-bottom: 4px solid #c8773a;
+			padding: 0px 40px;
+
+			/* STICKY POSITION — stays at top while scrolling */
+			position: sticky;
+			top: 0;
+			/* z-index so it sits above other content */
+			z-index: 100;
+		}
+
+		.header-inner {
+			/* margin: auto centers a block element horizontally */
+			margin: 0 auto;
+			padding: 16px 0;
+			/* position relative — acts as anchor for logo badge */
+			position: relative;
+		}
+
+		.site-logo {
+			font-family: 'Playfair Display', serif;
+			font-size: 28px;
+			font-weight: 900;
+			letter-spacing: 2px;
+			color: #f5f0e8;
+		}
+
+		.site-logo span {
+			color: #c8773a;
+		}
+
+		.header-tagline {
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 11px;
+			color: #a89880;
+			letter-spacing: 3px;
+			margin-top: 4px;
+		}
+
+		/* ABSOLUTE badge inside relative header — Day 3 Positioning */
+		.live-badge {
+			position: absolute;
+			top: 16px;
+			right: 0;
+			background-color: #c8773a;
+			color: #fff;
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 11px;
+			font-weight: 500;
+			/* padding inside the badge */
+			padding: 6px 14px;
+			border: 2px solid #e8a060;
+			letter-spacing: 2px;
+		}
+
+		/* ===========================
+		   NAVIGATION
+		=========================== */
+		.site-nav {
+			background-color: #2a1f10;
+			/* padding top-bottom / left-right */
+			padding: 0 40px;
+			border-bottom: 1px solid #3a2e1e;
+		}
+
+		.nav-list {
+			list-style: none;
+			display: flex;
+			gap: 0;
+			margin: 0 auto;
+		}
+
+		.nav-list li a {
+			display: block;
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 12px;
+			letter-spacing: 2px;
+			color: #a89880;
+			text-decoration: none;
+			/* padding creates clickable area */
+			padding: 14px 20px;
+			border-right: 1px solid #3a2e1e;
+			transition: all 0.2s ease;
+		}
+
+		.nav-list li:first-child a {
+			border-left: 1px solid #3a2e1e;
+		}
+
+		.nav-list li a:hover {
+			background-color: #c8773a;
+			color: #fff;
+		}
+
+		.nav-list li.active a {
+			color: #c8773a;
+		}
+
+		/* ===========================
+		   HERO / BANNER SECTION
+		   border, padding, margin
+		=========================== */
+		.hero {
+			background-color: #1a1208;
+			/* padding: top right bottom left (4 values — Day 3) */
+			padding: 60px 40px 60px 40px;
+			/* border-bottom with color */
+			border-bottom: 4px solid #c8773a;
+			/* position relative for the decorative number */
+			position: relative;
+			overflow: hidden;
+		}
+
+		/* Decorative absolute-positioned element — Day 3 */
+		.hero-number {
+			position: absolute;
+			top: -20px;
+			right: 40px;
+			font-family: 'Playfair Display', serif;
+			font-size: 200px;
+			font-weight: 900;
+			color: #2a1f10;
+			line-height: 1;
+			/* no pointer events so it doesn't interfere */
+			pointer-events: none;
+		}
+
+		.hero-inner {
+			max-width: 800px;
+			/* margin: auto only on left-right, explicit top/bottom */
+			margin: 0 auto;
+			/* position relative so it sits above decorative number */
+			position: relative;
+		}
+
+		.hero-category {
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 11px;
+			letter-spacing: 4px;
+			color: #c8773a;
+			/* margin-bottom creates space below this element */
+			margin-bottom: 20px;
+			/* border-left accent — Day 3 border-style */
+			border-left: 3px solid #c8773a;
+			/* padding-left: space between border and text */
+			padding-left: 12px;
+		}
+
+		.hero-title {
+			font-family: 'Playfair Display', serif;
+			font-size: 52px;
+			font-weight: 900;
+			color: #f5f0e8;
+			line-height: 1.1;
+			margin-bottom: 20px;
+		}
+
+		.hero-title em {
+			color: #c8773a;
+			font-style: italic;
+		}
+
+		.hero-excerpt {
+			font-size: 18px;
+			font-weight: 300;
+			color: #a89880;
+			line-height: 1.8;
+			max-width: 600px;
+			margin-bottom: 30px;
+		}
+
+		.hero-meta {
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 11px;
+			color: #6a5840;
+			letter-spacing: 2px;
+			/* border-top: dotted — Day 3 border-style */
+			border-top: 1px dotted #3a2e1e;
+			/* padding-top creates breathing room */
+			padding-top: 20px;
+		}
+
+		/* ===========================
+		   MAIN PAGE LAYOUT
+		   Two-column with sidebar
+		=========================== */
+		.page-wrapper {
+			max-width: 1100px;
+			margin: 0 auto;
+			padding: 40px 40px;
+			/* position relative for page-level positioned children */
+			position: relative;
+		}
+
+		.content-grid {
+			display: flex;
+			gap: 40px;
+			align-items: flex-start;
+		}
+
+		/* ===========================
+		   MAIN CONTENT AREA
+		=========================== */
+		.main-content {
+			flex: 1;
+			min-width: 0;
+		}
+
+		/* Section label */
+		.section-label {
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 11px;
+			letter-spacing: 4px;
+			color: #c8773a;
+			/* margin: 0 0 bottom 0 — shorthand */
+			margin: 0 0 24px 0;
+			/* border-bottom: dashed — Day 3 border-style */
+			border-bottom: 2px dashed #d4c4a8;
+			/* padding-bottom space between text and border */
+			padding-bottom: 8px;
+		}
+
+		/* ===========================
+		   ARTICLE CARDS
+		   border, padding, margin, position
+		=========================== */
+		.article-card {
+			background-color: #fff8ee;
+			/* border: single shorthand */
+			border: 1px solid #d4c4a8;
+			/* border-left accent — Day 3 multi-border concept */
+			border-left: 4px solid #c8773a;
+			/* margin-bottom: space between cards */
+			margin-bottom: 24px;
+			/* padding: top/bottom = 24px, left/right = 28px */
+			padding: 24px 28px;
+			/* position relative for the article number badge */
+			position: relative;
+			transition: all 0.2s ease;
+		}
+
+		.article-card:hover {
+			border-left-color: #1a1208;
+			background-color: #fff;
+		}
+
+		/* ABSOLUTE badge inside card — Day 3 absolute positioning */
+		.article-number {
+			position: absolute;
+			top: -12px;
+			right: 20px;
+			background-color: #1a1208;
+			color: #c8773a;
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 11px;
+			font-weight: 500;
+			/* padding: top right bottom left */
+			padding: 4px 10px 4px 10px;
+			border: 1px solid #c8773a;
+			letter-spacing: 2px;
+		}
+
+		.article-cat {
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 10px;
+			letter-spacing: 3px;
+			color: #c8773a;
+			margin-bottom: 8px;
+		}
+
+		.article-title {
+			font-family: 'Playfair Display', serif;
+			font-size: 22px;
+			font-weight: 700;
+			color: #1a1208;
+			line-height: 1.3;
+			margin-bottom: 10px;
+		}
+
+		.article-body {
+			font-size: 15px;
+			font-weight: 300;
+			color: #5a4830;
+			line-height: 1.8;
+			margin-bottom: 16px;
+		}
+
+		.article-footer {
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 10px;
+			color: #a89880;
+			letter-spacing: 2px;
+			/* border-top dotted — Day 3 border-style */
+			border-top: 1px dotted #d4c4a8;
+			padding-top: 12px;
+			display: flex;
+			justify-content: space-between;
+		}
+
+		/* Read more link */
+		.read-more {
+			display: inline-block;
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 11px;
+			letter-spacing: 2px;
+			color: #1a1208;
+			text-decoration: none;
+			border: 1px solid #1a1208;
+			/* padding: vertical horizontal */
+			padding: 8px 16px;
+			transition: all 0.2s ease;
+		}
+
+		.read-more:hover {
+			background-color: #1a1208;
+			color: #f5f0e8;
+		}
+
+		/* ===========================
+		   QUOTE BLOCK
+		   margin, padding, border-left (Day 3)
+		=========================== */
+		.pull-quote {
+			background-color: #1a1208;
+			color: #f5f0e8;
+			/* margin: top right bottom left */
+			margin: 0 0 24px 0;
+			/* padding: top right bottom left (all 4 values) */
+			padding: 30px 32px 30px 40px;
+			/* border-left: ridge — Day 3 border-style: ridge */
+			border-left: 8px ridge #c8773a;
+			/* position relative for the quote mark */
+			position: relative;
+		}
+
+		/* ABSOLUTE decorative quote mark — Day 3 positioning */
+		.pull-quote::before {
+			content: "\201C";
+			position: absolute;
+			top: 10px;
+			left: 12px;
+			font-family: 'Playfair Display', serif;
+			font-size: 60px;
+			color: #c8773a;
+			line-height: 1;
+		}
+
+		.pull-quote p {
+			font-family: 'Playfair Display', serif;
+			font-size: 20px;
+			font-style: italic;
+			font-weight: 700;
+			line-height: 1.6;
+			color: #f5f0e8;
+			/* padding-left to avoid overlap with quote mark */
+			padding-left: 20px;
+		}
+
+		.pull-quote cite {
+			display: block;
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 11px;
+			letter-spacing: 2px;
+			color: #c8773a;
+			margin-top: 14px;
+			padding-left: 20px;
+		}
+
+		/* ===========================
+		   SIDEBAR
+		   position: relative, fixed child
+		=========================== */
+		.sidebar {
+			width: 280px;
+			flex-shrink: 0;
+			/* position sticky — Day 3 sticky sidebar */
+			position: sticky;
+			top: 80px;
+		}
+
+		.sidebar-widget {
+			background-color: #fff8ee;
+			border: 1px solid #d4c4a8;
+			/* border-top: thicker accent — Day 3 multi-side borders */
+			border-top: 3px solid #1a1208;
+			/* margin-bottom between widgets */
+			margin-bottom: 24px;
+			/* padding: 20px all sides */
+			padding: 20px;
+		}
+
+		.widget-title {
+			font-family: 'Playfair Display', serif;
+			font-size: 16px;
+			font-weight: 700;
+			color: #1a1208;
+			margin-bottom: 16px;
+			/* padding-bottom + border-bottom */
+			padding-bottom: 10px;
+			border-bottom: 1px solid #d4c4a8;
+		}
+
+		/* Topic tags — border, padding, margin on inline elements */
+		.tag-list {
+			list-style: none;
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+		}
+
+		.tag-list li a {
+			display: inline-block;
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 10px;
+			letter-spacing: 2px;
+			color: #5a4830;
+			text-decoration: none;
+			/* border: dashed — Day 3 border-style: dashed */
+			border: 1px dashed #c8773a;
+			/* padding: vertical horizontal */
+			padding: 5px 10px;
+			transition: all 0.2s ease;
+		}
+
+		.tag-list li a:hover {
+			background-color: #c8773a;
+			color: #fff;
+			border-style: solid;
+		}
+
+		/* Recent posts list inside sidebar */
+		.recent-post {
+			/* padding + border-bottom creates separation */
+			padding: 10px 0;
+			border-bottom: 1px dotted #d4c4a8;
+			/* margin-bottom extra breathing room */
+			margin-bottom: 4px;
+		}
+
+		.recent-post:last-child {
+			border-bottom: none;
+			margin-bottom: 0;
+		}
+
+		.recent-post-title {
+			font-family: 'Source Serif 4', serif;
+			font-size: 13px;
+			font-weight: 400;
+			color: #1a1208;
+			line-height: 1.4;
+			margin-bottom: 4px;
+		}
+
+		.recent-post-date {
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 10px;
+			color: #a89880;
+			letter-spacing: 1px;
+		}
+
+		/* Stats widget — border, padding */
+		.stat-row {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			/* padding: top-bottom right-left */
+			padding: 10px 0;
+			border-bottom: 1px solid #e8dcc8;
+		}
+
+		.stat-row:last-child {
+			border-bottom: none;
+		}
+
+		.stat-label {
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 10px;
+			letter-spacing: 2px;
+			color: #a89880;
+		}
+
+		.stat-value {
+			font-family: 'Playfair Display', serif;
+			font-size: 18px;
+			font-weight: 700;
+			color: #c8773a;
+		}
+
+		/* ===========================
+		   FIXED MESSAGE / BACK-TO-TOP
+		   position: fixed — Day 3
+		=========================== */
+		.back-to-top {
+			/* FIXED POSITION — always visible, bottom-right corner */
+			position: fixed;
+			bottom: 30px;
+			right: 30px;
+			background-color: #1a1208;
+			color: #c8773a;
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 11px;
+			letter-spacing: 2px;
+			text-decoration: none;
+			/* padding: top right bottom left */
+			padding: 12px 16px;
+			border: 1px solid #c8773a;
+			/* z-index above everything */
+			z-index: 999;
+			transition: all 0.2s ease;
+		}
+
+		.back-to-top:hover {
+			background-color: #c8773a;
+			color: #fff;
+		}
+
+		/* ===========================
+		   FOOTER
+		   margin, padding, border
+		=========================== */
+		.site-footer {
+			background-color: #1a1208;
+			color: #a89880;
+			/* margin-top: space above footer */
+			margin-top: 40px;
+			/* padding: top/bottom 40px, left/right 40px */
+			padding: 40px 40px;
+			/* border-top: outset — Day 3 border-style: outset */
+			border-top: 4px outset #c8773a;
+		}
+
+		.footer-inner {
+			max-width: 1100px;
+			margin: 0 auto;
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-start;
+			gap: 40px;
+		}
+
+		.footer-brand .site-logo {
+			font-size: 22px;
+			margin-bottom: 10px;
+		}
+
+		.footer-brand p {
+			font-size: 13px;
+			font-weight: 300;
+			line-height: 1.7;
+			max-width: 240px;
+		}
+
+		.footer-col h4 {
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 10px;
+			letter-spacing: 3px;
+			color: #c8773a;
+			margin-bottom: 14px;
+			/* padding-bottom + border-bottom: groove — Day 3 */
+			padding-bottom: 8px;
+			border-bottom: 1px groove #3a2e1e;
+		}
+
+		.footer-col ul {
+			list-style: none;
+		}
+
+		.footer-col ul li {
+			font-size: 13px;
+			font-weight: 300;
+			/* margin-bottom between items */
+			margin-bottom: 8px;
+			color: #a89880;
+		}
+
+		.footer-bottom {
+			margin-top: 30px;
+			padding-top: 20px;
+			/* border-top: double — Day 3 border-style: double */
+			border-top: 3px double #3a2e1e;
+			text-align: center;
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 10px;
+			letter-spacing: 2px;
+			color: #6a5840;
+		}
+
+		/* ===========================
+		   BOX MODEL DEMO SECTION
+		   Visually shows margin/padding/border
+		=========================== */
+		.box-model-demo {
+			background-color: #fff8ee;
+			border: 1px solid #d4c4a8;
+			border-top: 3px solid #c8773a;
+			margin-bottom: 24px;
+			padding: 24px;
+		}
+
+		.box-model-demo h3 {
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 11px;
+			letter-spacing: 3px;
+			color: #c8773a;
+			margin-bottom: 16px;
+		}
+
+		.demo-margin {
+			background-color: #fde8d0;
+			/* margin: 10px all sides */
+			margin: 10px;
+			/* border: solid */
+			border: 2px dashed #c8773a;
+			/* padding: 15px all sides */
+			padding: 15px;
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 11px;
+			color: #5a4830;
+			text-align: center;
+		}
+
+		.demo-border {
+			background-color: #fdf0df;
+			border-style: solid groove dashed dotted;
+			border-color: #c8773a #1a1208 #a89880 #d4c4a8;
+			border-width: 4px 6px 4px 6px;
+			margin: 10px;
+			padding: 15px;
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 11px;
+			color: #5a4830;
+			text-align: center;
+		}
+
+	</style>
+</head>
+<body>
+
+	<!-- =====================
+	     STICKY HEADER
+	     position: sticky; top: 0
+	===================== -->
+	<header class="site-header" id="top">
+		<div class="header-inner">
+			<div class="site-logo">THE <span>TECH</span> JOURNAL</div>
+			<div class="header-tagline">CSS · HTML · PHP · WEB DEVELOPMENT</div>
+			<!-- ABSOLUTE positioned inside RELATIVE header -->
+			<span class="live-badge">&#9679; LIVE</span>
+		</div>
+	</header>
+
+	<!-- =====================
+	     NAVIGATION
+	     padding, border, margin
+	===================== -->
+	<nav class="site-nav">
+		<ul class="nav-list">
+			<li class="active"><a href="#">Home</a></li>
+			<li><a href="#">CSS</a></li>
+			<li><a href="#">HTML</a></li>
+			<li><a href="#">PHP</a></li>
+			<li><a href="#">JavaScript</a></li>
+			<li><a href="#">Tutorials</a></li>
+			<li><a href="#">About</a></li>
+		</ul>
+	</nav>
+
+	<!-- =====================
+	     HERO SECTION
+	     padding, border, position relative + absolute
+	===================== -->
+	<section class="hero">
+		<!-- Decorative ABSOLUTE element -->
+		<div class="hero-number">3</div>
+		<div class="hero-inner">
+			<div class="hero-category">CSS DAY 3 — FEATURED ARTICLE</div>
+			<h1 class="hero-title">Mastering the<br><em>CSS Box Model</em><br>& Positioning</h1>
+			<p class="hero-excerpt">
+				Every pixel on a webpage is governed by the box model. Understanding margin, padding, border, and positioning unlocks the power to build any layout you imagine.
+			</p>
+			<div class="hero-meta">
+				PUBLISHED: 24 APRIL 2026 &nbsp;&nbsp;|&nbsp;&nbsp; HIDAYA INSTITUTE OF SCIENCE & TECHNOLOGY &nbsp;&nbsp;|&nbsp;&nbsp; 8 MIN READ
+			</div>
+		</div>
+	</section>
+
+	<!-- =====================
+	     MAIN PAGE LAYOUT
+	     Two columns: content + sticky sidebar
+	===================== -->
+	<div class="page-wrapper">
+		<div class="content-grid">
+
+			<!-- MAIN CONTENT -->
+			<main class="main-content">
+
+				<div class="section-label">LATEST ARTICLES</div>
+
+				<!-- ARTICLE CARD 1 -->
+				<article class="article-card">
+					<!-- ABSOLUTE badge inside RELATIVE card -->
+					<span class="article-number">#01</span>
+					<div class="article-cat">BOX MODEL</div>
+					<h2 class="article-title">The Four Layers Every Web Developer Must Know</h2>
+					<p class="article-body">
+						The CSS box model is the foundation of all web layouts. Each HTML element is a rectangular box composed of four layers: the content area, padding, border, and margin. Understanding how these four layers stack and interact is the first step toward total layout control.
+					</p>
+					<a href="#" class="read-more">READ MORE &rarr;</a>
+					<div class="article-footer">
+						<span>BY HIDAYA INSTITUTE</span>
+						<span>BOX MODEL &bull; CSS DAY 3</span>
+					</div>
+				</article>
+
+				<!-- PULL QUOTE — border-left: ridge, position relative, ::before absolute -->
+				<blockquote class="pull-quote">
+					<p>The box model isn't just a CSS rule — it's the architecture of the entire visible web.</p>
+					<cite>— CSS Day 3 Lecture Notes</cite>
+				</blockquote>
+
+				<!-- ARTICLE CARD 2 -->
+				<article class="article-card">
+					<span class="article-number">#02</span>
+					<div class="article-cat">POSITIONING</div>
+					<h2 class="article-title">Static, Relative, Absolute, Fixed & Sticky: Explained</h2>
+					<p class="article-body">
+						CSS offers five position values. <strong>Static</strong> is the default — elements flow naturally. <strong>Relative</strong> moves an element from its normal position while keeping its space. <strong>Absolute</strong> removes it from flow and places it relative to its nearest positioned ancestor. <strong>Fixed</strong> pins it to the viewport. <strong>Sticky</strong> acts like relative until a scroll threshold, then becomes fixed.
+					</p>
+					<a href="#" class="read-more">READ MORE &rarr;</a>
+					<div class="article-footer">
+						<span>BY HIDAYA INSTITUTE</span>
+						<span>POSITIONING &bull; CSS DAY 3</span>
+					</div>
+				</article>
+
+				<!-- BOX MODEL DEMO — visual demonstration of Day 3 concepts -->
+				<div class="box-model-demo">
+					<h3>LIVE DEMO — BORDER-STYLE &amp; MARGIN / PADDING</h3>
+					<div class="demo-margin">
+						margin: 10px &nbsp;|&nbsp; border: 2px dashed &nbsp;|&nbsp; padding: 15px
+					</div>
+					<div class="demo-border">
+						border-style: solid groove dashed dotted &nbsp;|&nbsp; 4 different sides
+					</div>
+				</div>
+
+				<!-- ARTICLE CARD 3 -->
+				<article class="article-card">
+					<span class="article-number">#03</span>
+					<div class="article-cat">BORDER STYLES</div>
+					<h2 class="article-title">All 8 Border Styles & How to Mix Them Per Side</h2>
+					<p class="article-body">
+						CSS gives you eight border styles: solid, dotted, dashed, double, ridge, groove, inset, and outset. You can apply different styles to each side using the shorthand <code>border-style: solid groove dashed dotted</code> — top, right, bottom, left — just like margin and padding shorthand.
+					</p>
+					<a href="#" class="read-more">READ MORE &rarr;</a>
+					<div class="article-footer">
+						<span>BY HIDAYA INSTITUTE</span>
+						<span>BORDERS &bull; CSS DAY 3</span>
+					</div>
+				</article>
+
+			</main>
+
+			<!-- STICKY SIDEBAR — position: sticky; top: 80px -->
+			<aside class="sidebar">
+
+				<!-- Stats Widget -->
+				<div class="sidebar-widget">
+					<div class="widget-title">Course Progress</div>
+					<div class="stat-row">
+						<span class="stat-label">DAYS DONE</span>
+						<span class="stat-value">3</span>
+					</div>
+					<div class="stat-row">
+						<span class="stat-label">PROPERTIES</span>
+						<span class="stat-value">24+</span>
+					</div>
+					<div class="stat-row">
+						<span class="stat-label">CONCEPTS</span>
+						<span class="stat-value">8</span>
+					</div>
+					<div class="stat-row">
+						<span class="stat-label">PROJECTS</span>
+						<span class="stat-value">3</span>
+					</div>
+				</div>
+
+				<!-- Recent Posts Widget -->
+				<div class="sidebar-widget">
+					<div class="widget-title">Previous Lessons</div>
+					<div class="recent-post">
+						<div class="recent-post-title">CSS Day 1 — Selectors & Pseudo-classes</div>
+						<div class="recent-post-date">APR 22, 2026</div>
+					</div>
+					<div class="recent-post">
+						<div class="recent-post-title">CSS Day 2 — Typography, Backgrounds & Transitions</div>
+						<div class="recent-post-date">APR 23, 2026</div>
+					</div>
+					<div class="recent-post">
+						<div class="recent-post-title">CSS Day 3 — Box Model & Positioning</div>
+						<div class="recent-post-date">APR 24, 2026</div>
+					</div>
+				</div>
+
+				<!-- Tags Widget -->
+				<div class="sidebar-widget">
+					<div class="widget-title">Topics Covered</div>
+					<ul class="tag-list">
+						<li><a href="#">margin</a></li>
+						<li><a href="#">padding</a></li>
+						<li><a href="#">border</a></li>
+						<li><a href="#">position</a></li>
+						<li><a href="#">sticky</a></li>
+						<li><a href="#">fixed</a></li>
+						<li><a href="#">absolute</a></li>
+						<li><a href="#">relative</a></li>
+						<li><a href="#">width</a></li>
+						<li><a href="#">height</a></li>
+						<li><a href="#">z-index</a></li>
+					</ul>
+				</div>
+
+			</aside>
+
+		</div>
+	</div>
+
+	<!-- =====================
+	     FOOTER
+	     margin, padding, border-top: outset, double, groove
+	===================== -->
+	<footer class="site-footer">
+		<div class="footer-inner">
+			<div class="footer-brand">
+				<div class="site-logo">THE <span>TECH</span> JOURNAL</div>
+				<p>A training resource by Hidaya Institute of Science &amp; Technology. Covering web development from the ground up.</p>
+			</div>
+			<div class="footer-col">
+				<h4>QUICK LINKS</h4>
+				<ul>
+					<li>Home</li>
+					<li>CSS Tutorials</li>
+					<li>HTML Basics</li>
+					<li>PHP Course</li>
+					<li>About</li>
+				</ul>
+			</div>
+			<div class="footer-col">
+				<h4>CSS DAYS</h4>
+				<ul>
+					<li>Day 1 — Selectors</li>
+					<li>Day 2 — Typography</li>
+					<li>Day 3 — Box Model</li>
+					<li>Day 4 — Flexbox</li>
+					<li>Day 5 — Grid</li>
+				</ul>
+			</div>
+			<div class="footer-col">
+				<h4>CONTACT</h4>
+				<ul>
+					<li>Hidaya Institute</li>
+					<li>Software Dev Training</li>
+					<li>Batch 2026</li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			&copy; 2026 HIDAYA INSTITUTE OF SCIENCE &amp; TECHNOLOGY &nbsp;&mdash;&nbsp; CSS DAY 3 LAYOUT PROJECT
+		</div>
+	</footer>
+
+	<!-- =====================
+	     FIXED BACK-TO-TOP BUTTON
+	     position: fixed; bottom: 30px; right: 30px
+	===================== -->
+	<a href="#top" class="back-to-top">&#8679; TOP</a>
+
+</body>
+</html>

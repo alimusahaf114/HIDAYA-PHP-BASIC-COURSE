@@ -1,0 +1,119 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.top-header {
+  width: 100%;
+  height: 85px;
+  padding: 20px;
+  background-color: #1a1208;
+  color: #f5f0e8;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.logo {
+  font-family: "Playfair Display";
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #f5f0e8;
+}
+.logo span {
+  color: #c8773a;
+}
+.logo-tags {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: #a89880;
+  letter-spacing: 3px;
+  margin-top: 4px;
+}
+.live {
+  position: absolute;
+  top: 16px;
+  right: 5%;
+  background-color: #c8773a;
+  color: #fff;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border: 2px solid #e8a060;
+  letter-spacing: 2px;
+}
+.nav {
+  background-color: #2a1f10;
+  padding: 10px 40px;
+  border-bottom: 1px solid #3a2e1e;
+}
+.navlist {
+  margin: 0 auto;
+}
+.navlist a {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #a89880;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-right: 1px solid #3a2e1e;
+}
+.hero {
+  background-color: #1a1208;
+  padding: 60px 40px 60px 40px;
+  /* border-bottom with color */
+  border-bottom: 4px solid #c8773a;
+  position: relative;
+  overflow: hidden;
+}
+
+
+.hero-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.life {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: #c8773a;
+  margin-bottom: 20px;
+  border-left: 3px solid #c8773a;
+  padding-left: 12px;
+}
+
+.title {
+  font-family: "Playfair Display", serif;
+  font-size: 52px;
+  font-weight: 900;
+  color: #f5f0e8;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.hero-title em {
+  color: #c8773a;
+  font-style: italic;
+}
+
+.descri {
+  font-size: 18px;
+  font-weight: 300;
+  color: #a89880;
+  line-height: 1.8;
+  max-width: 600px;
+  margin-bottom: 30px;
+}
+
+.extra {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: #6a5840;
+  letter-spacing: 2px;
+  border-top: 1px dotted #3a2e1e;
+  padding-top: 20px;
+}
