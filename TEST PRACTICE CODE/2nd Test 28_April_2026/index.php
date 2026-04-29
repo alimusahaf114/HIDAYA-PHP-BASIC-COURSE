@@ -102,11 +102,11 @@
 // echo $arr;
 // $arr = ["A", "B", "C"];
 // echo implode("-", $arr);
-$text = "abc";
-$new = "";
+// $text = "abc";
+// $new = "";
 
-for($i = 0; isset($text[$i]); $i++){
-    $new .= $text[$i] . $i;
-}
-echo $new;
+// for($i = 0; isset($text[$i]); $i++){
+//     $new .= $text[$i] . $i;
+// }
+// echo $new;
 ?>
