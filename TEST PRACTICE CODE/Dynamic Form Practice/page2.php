@@ -6,6 +6,9 @@
     <title>Dynamic form page 1</title>
 </head>
 <body>
+    <?php 
+    if(isset($_POST['submit'])){
+    ?>
     <center>
     <form action="page2.php" method="POST" >
         <table border="1"  cellpadding=10>
@@ -51,5 +54,7 @@
         <td><input type="hidden" name="fields" value=<?php echo $num ?>></td>
     </form>
 </center>
+<?php }else { echo "<h1> Please Add input fields First </h1>";}?>
+
 </body>
 </html>
