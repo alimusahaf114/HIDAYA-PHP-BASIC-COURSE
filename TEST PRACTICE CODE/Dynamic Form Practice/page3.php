@@ -10,7 +10,7 @@
     if(isset($_POST['submit'])){
     ?>
     <center>
-    <form action="page3.php" method="POST" >
+    <form action="page4.php" method="POST" >
         <table border="1"  cellpadding=10>
             <?php 
             $num = $_POST['fields'];
@@ -20,24 +20,29 @@
                <th>Name</th>
                <th>Gender</th>
                <th>country</th>
+               <th>Select</th>
             </tr>
             <?php 
             for($i = 1 ; $i <= $num ; $i++){
+                $name = $_POST['first_name'.$i];
+                $country = $_POST['country'.$i];
+                $gender = $_POST['gender'.$i];
             ?>
 
             <tr>
                 <td style="font-weight: bold;"><?php echo $i  ?></td>
-                <td><input type="text" name="first_name<?php echo $i ?>" ></td>
+                <td><?php echo $name ?></td>
+                <input type="hidden" name="first_name<?php echo $i ?>" value="<?php echo $name ?>">
                 <td>
-                    Male: <input type="radio" name="gender<?php echo $i ?>" value="male">
-                    Female: <input type="radio" name="gender<?php echo $i ?>" value="female">
+                   <?php echo $gender ?>
                 </td>
+                <input type="hidden" name="gender<?php echo $i ?>" value="<?php echo $gender ?>">
                 <td>
-                    <select name="country<?php echo $i ?>">
-                        <option value="pakistan">pakistan</option>
-                        <option value="Iran">Iran</option>
-                        <option value="Iraq">Iraq</option>
-                    </select>
+                    <?php echo $country ?>
+                </td>
+                <input type="hidden" name="country<?php echo $i ?>" value="<?php echo $country ?>">
+                <td>
+                    <input type="checkbox" name="edit<?php echo $i ?>" value="1">
                 </td>
             </tr>
 
@@ -46,7 +51,7 @@
             }
             ?>
             <tr align=center>
-                <td colspan=4>
+                <td colspan=5>
                     <input type="submit" name="submit" >
                 </td>
             </tr>
