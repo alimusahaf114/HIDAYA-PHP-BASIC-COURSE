@@ -50,6 +50,7 @@
             if($_POST['password'] == $_POST['confirmPass'])
             {
             $_SESSION['password'] = $_POST['password'];
+            header("./login.php");
             }else{
                 $error =  "<p style='color: red;'> Wrong Password </p>";
             }}
